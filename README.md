@@ -14,7 +14,7 @@ npm start
 ```
 
 ## What the finished react project will look like
-![alt tag](https://raw.githubusercontent.com/McKmillions/react-rogue1/master/dist/img/react-rogue1.png)
+![alt tag](https://raw.githubusercontent.com/McKmillions/react-comics/master/dist/img/react-comics.png)
 
 **Dev-Dependencies** ( `npm i --save-dev` )
 
@@ -114,7 +114,7 @@ Redux library itself is only a set of helpers to “mount” reducers to a singl
 
 That's it!
 
-![alt tag](https://raw.githubusercontent.com/McKmillions/react-rogue1/master/dist/img/react_ui_workflow.png)
+![alt tag](https://raw.githubusercontent.com/McKmillions/react-comics/master/dist/img/react_ui_workflow.png)
 
 
 ### Example
