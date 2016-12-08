@@ -114,6 +114,9 @@ Redux library itself is only a set of helpers to “mount” reducers to a singl
 
 That's it!
 
+![alt tag](https://raw.githubusercontent.com/McKmillions/react-rogue1/master/dist/img/react_ui_workflow.png)
+
+
 ### Example
 
 ```js
@@ -212,6 +215,10 @@ console.log(store.getState())
 }
 */
 ```
+
+## State is read-only
+
+### The only way to change the state is to emit an action, an object describing what happened.
 
 This ensures that neither the views nor the network callbacks will ever write directly to the state.
 
