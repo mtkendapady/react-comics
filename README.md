@@ -3,7 +3,6 @@ Will be building a TODO app using React, React Router, and Redux
 ### Resources
 Project: https://github.com/DevMountain/react-emporium
 https://github.com/zacanger/react-bits from Zac Anger
-## Redux http://redux.js.org/
 
 ## Fork & Clone the Tutorial
 
@@ -64,24 +63,18 @@ This is the best example to get a deeper understanding of how the state updates 
 
 
 ## Angular VS React
-Angular 1	React
-View	HTML template + Controller	JSX Component
-State	Services/Factories	Redux
-Rest/API calls	Factory/Service? Controller?	actions/reducers
-middleware
-Dependencies	Bower/CDN	NPM Import/Require
-Dep Injection	Script Tag	Included in bundle
-Require & Bundling	Browserify with Grunt/Gulp	Webpack
 
  | Angular | React
 ------------ | ------------- | -------------
 view | HTML template + Controller | JSX Component
 State | Services/Factories | Redux
 Rest/API calls | Factory/Service? Controller? | actions/reducers
-middleware
-Dependencies | Bower/CDN | NPM Import/Require
+middleware Dependencies | Bower/CDN | NPM Import/Require
 Dep Injection | Script Tag | Included in bundle
 Require & Bundling | Browserify with Grunt/Gulp | Webpack
+
+## Redux
+http://redux.js.org/
 
 
 Redux is a predictable state container
@@ -171,9 +164,17 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
-Instead of mutating the state directly, you specify the mutations you want to happen with plain objects called actions. Then you write a special function called a reducer to decide how every action transforms the entire application's state.
+Instead of mutating the state directly, you specify the mutations you want to happen with plain objects called actions.
 
-Managing this ever-changing state is hard. If a model can update another model, then a view can update a model, which updates another model, and this, in turn, might cause another view to update. At some point, you no longer understand what happens in your app as you have lost control over the when, why, and how of its state. When a system is opaque and non-deterministic, it's hard to reproduce bugs or add new features.
+Then you write a special function called a reducer to decide how every action transforms the entire application's state.
+
+Managing this ever-changing state is hard.
+
+If a model can update another model, then a view can update a model, which updates another model, and this, in turn, might cause another view to update.
+
+At some point, you no longer understand what happens in your app as you have lost control over the when, why, and how of its state.
+
+When a system is opaque and non-deterministic, it's hard to reproduce bugs or add new features.
 
 ## Three Principles
 
@@ -186,7 +187,11 @@ Redux can be described in three fundamental principles:
 
 ### The state of your whole application is stored in an object tree within a single store.
 
-A single state tree makes it easier to debug an application; it also enables you to persist your app's state in development, for a faster development cycle. Some functionality which has been traditionally difficult to implement - Undo/Redo, for example - can suddenly become trivial to implement, if all of your state is stored in a single tree.
+A single state tree makes it easier to debug an application.
+
+It also enables you to persist your app's state in development, for a faster development cycle.
+
+Some functionality which has been traditionally difficult to implement - Undo/Redo, for example - can suddenly become trivial to implement, if all of your state is stored in a single tree.
 
 ```js
 console.log(store.getState())
@@ -212,7 +217,9 @@ This ensures that neither the views nor the network callbacks will ever write di
 
 Instead, they express an intent to transform the state.
 
-Because all changes are centralized and happen one by one in a strict order, there are no subtle race conditions to watch out for. As actions are just plain objects, they can be logged, serialized, stored, and later replayed for debugging or testing purposes.
+Because all changes are centralized and happen one by one in a strict order, there are no subtle race conditions to watch out for.
+
+As actions are just plain objects, they can be logged, serialized, stored, and later replayed for debugging or testing purposes.
 
 ```js
 store.dispatch({
@@ -230,7 +237,13 @@ store.dispatch({
 
 ### To specify how the state tree is transformed by actions, you write pure reducers.
 
-Reducers are just pure functions that take the previous state and an action, and return the next state. Remember to return new state objects, instead of mutating the previous state. You can start with a single reducer, and as your app grows, split it off into smaller reducers that manage specific parts of the state tree. Because reducers are just functions, you can control the order in which they are called, pass additional data, or even make reusable reducers for common tasks such as pagination.
+Reducers are just pure functions that take the previous state and an action, and return the next state.
+
+Remember to return new state objects, instead of mutating the previous state.
+
+You can start with a single reducer, and as your app grows, split it off into smaller reducers that manage specific parts of the state tree.
+
+Because reducers are just functions, you can control the order in which they are called, pass additional data, or even make reusable reducers for common tasks such as pagination.
 
 ```js
 function visibilityFilter(state = 'SHOW_ALL', action) {
@@ -285,7 +298,9 @@ http://www.robinwieruch.de/the-soundcloud-client-in-react-redux-ducks/
 
 ## Actions
 
-Actions are payloads of information that send data from your application to your store. They are the only source of information for the store. You send them to the store using `store.dispatch()`.
+Actions are payloads of information that send data from your application to your store.
+
+They are the only source of information for the store. You send them to the store using `store.dispatch()`.
 
 Here's an example action which represents adding a new todo item:
 
@@ -298,7 +313,13 @@ const ADD_TODO = 'ADD_TODO'
 }
 ```
 
-Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants. Once your app is large enough, you may want to move them into a separate module.
+Actions are plain JavaScript objects.
+
+Actions must have a type property that indicates the type of action being performed.
+
+Types should typically be defined as string constants.
+
+Once your app is large enough, you may want to move them into a separate module.
 
 ```js
 import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
@@ -306,7 +327,11 @@ import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
 
 Other than type, the structure of an action object is really up to you.
 
-We'll add one more action type to describe a user ticking off a todo as completed. We refer to a particular todo by index because we store them in an array. In a real app, it is wiser to generate a unique ID every time something new is created.
+We'll add one more action type to describe a user ticking off a todo as completed.
+
+We refer to a particular todo by index because we store them in an array.
+
+In a real app, it is wiser to generate a unique ID every time something new is created.
 
 ```js
 {
@@ -315,7 +340,9 @@ We'll add one more action type to describe a user ticking off a todo as complete
 }
 ```
 
-It's a good idea to pass as little data in each action as possible. For example, it's better to pass index than the whole todo object.
+It's a good idea to pass as little data in each action as possible.
+
+For example, it's better to pass index than the whole todo object.
 
 Finally, we'll add one more action type for changing the currently visible todos.
 
@@ -325,8 +352,3 @@ Finally, we'll add one more action type for changing the currently visible todos
   filter: SHOW_COMPLETED
 }
 ```
-
-Your finished code should look something like this:
-
-## Ducks Method
-https://github.com/erikras/ducks-modular-redux
