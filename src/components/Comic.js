@@ -32,7 +32,7 @@ class Comic extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="comic-wrapper">
 				<h3>{ this.state.comic.company }</h3>
 				<h3>{ this.state.comic.price }</h3>
 				<img className="comic-pic" src={ this.state.comic.img } />

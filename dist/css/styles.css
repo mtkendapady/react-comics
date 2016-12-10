@@ -119,3 +119,7 @@ footer container {
    -webkit-filter: invert(1);
    filter: invert(1);
 }
+
+.comic-wrapper {
+	margin-bottom: 100px;
+}
